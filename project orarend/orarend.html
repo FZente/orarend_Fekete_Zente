@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Órarend</title>
+    <style>
+        body, html {
+            background-color: beige;
+            height: 100%;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        thead tr:first-child th:first-child {
+            border-top-left-radius: 15px;
+        }
+
+        thead tr:first-child th:last-child {
+            border-top-right-radius: 15px;
+        }
+
+        tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 15px;
+        }
+
+        tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 15px;
+        }
+        .nap-cell {
+            background-color: #24d1a3; 
+            font-weight: bold;
+            background-color: #e38a1e;
+            color: white;
+        }
+        h1{
+            margin-bottom: 80px;
+            font-style: italic;
+        }
+        button{
+            background-color: #26fc2d;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Órarend</h1>
+        <table id="orak-table">
+            <thead>
+                <tr>
+                    <th>Nap</th>
+                    <th>1.óra</th>
+                    <th>2.óra</th>
+                    <th>3.óra</th>
+                    <th>4.óra</th>
+                    <th>5.óra</th>
+                    <th>6.óra</th>
+                    <th>7.óra</th>
+                    <th>8.óra</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+
+        <div class="button-group">
+            <button onclick="showEditForm()">Óra szerkesztése</button>
+            <button onclick="showDeleteForm()">Óra Törlés</button>
+        </div>
+        <div id="edit-form" style="display:none; margin-top: 20px;">
+            <label for="edit-id">Sor indexe (0 = Hétfő):</label>
+            <input type="number" id="edit-id" min="0" max="4"><br>
+        
+            <label for="edit-field">Melyik óra?</label>
+            <select id="edit-field">
+            <option value="elso">Első</option>
+            <option value="masodik">Második</option>
+            <option value="harmadik">Harmadik</option>
+            <option value="negyedik">Negyedik</option>
+            <option value="otodik">Ötödik</option>
+            <option value="hatodik">Hatodik</option>
+            <option value="hetedik">Hetedik</option>
+            <option value="nyolcadik">Nyolcadik</option>
+            </select><br>
+        
+            <label for="edit-value">Új érték:</label>
+            <input type="text" id="edit-value"><br>
+        
+            <button onclick="submitEdit()">Mentés</button>
+        </div>
+        <div id="delete-cell-form" style="display: none; margin-top: 20px;">
+            <h3>Óra törlése egy cellából</h3>
+        
+            <label for="delete-id">Nap index (0–4): </label>
+            <input type="number" id="delete-id" min="0" max="4"><br><br>
+        
+            <label for="delete-field">Óra sorszáma: </label>
+            <select id="delete-field">
+                <option value="elso">Első</option>
+                <option value="masodik">Második</option>
+                <option value="harmadik">Harmadik</option>
+                <option value="negyedik">Negyedik</option>
+                <option value="otodik">Ötödik</option>
+                <option value="hatodik">Hatodik</option>
+                <option value="hetedik">Hetedik</option>
+                <option value="nyolcadik">Nyolcadik</option>
+            </select><br><br>
+        
+            <button onclick="deleteCell()">Törlés</button>
+        </div>
+    </div>
+
+    <script src="orak.js"></script>
+</body>
+</html>
